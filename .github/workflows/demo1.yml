@@ -4,7 +4,18 @@ on:
     types:
       - opened
       #- closed
+    branches:
+      - main
+      - 'dev-*' # any branch that starts with this eg: dev-new dev-old
+      - 'feature/**' # starts with feature ** allows slashes * doesn't allow slashes eg: feature/SBN1231 
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' # any branch that starts with this eg: dev-new dev-old
+      - 'feature/**' # starts with feature ** allows slashes * doesn't allow slashes eg: feature/SBN1231 
+    paths-ignore: # Also add condition to push event - AND we did not change a file in below path
+      - '.github/workflows/*' 
 jobs:
   deploy:
     runs-on: ubuntu-latest
